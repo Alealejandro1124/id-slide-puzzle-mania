@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,21 +35,9 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Game specific colors */
+    --game-blue: 199 92% 56%;
+    --game-green: 142 70% 45%;
   }
 
   .dark {
@@ -79,14 +68,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -94,8 +75,58 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.blue-green-gradient {
+  background: linear-gradient(135deg, hsl(199 92% 56%), hsl(142 70% 45%));
+}
+
+.tile {
+  @apply flex items-center justify-center rounded-lg font-bold text-white text-2xl md:text-3xl shadow-md transition-transform;
+  background: linear-gradient(135deg, hsl(199 92% 56% / 0.9), hsl(142 70% 45% / 0.9));
+  user-select: none;
+}
+
+.empty-tile {
+  background: linear-gradient(135deg, hsl(199 92% 56% / 0.2), hsl(142 70% 45% / 0.2));
+}
+
+.game-button {
+  @apply px-6 py-2 rounded-full font-semibold text-white shadow-md transition-all;
+  background: linear-gradient(135deg, hsl(199 92% 56%), hsl(142 70% 45%));
+}
+
+.game-button:hover {
+  @apply shadow-lg transform scale-105;
+}
+
+.game-button:active {
+  @apply transform scale-100;
+}
+
+.tile.movable {
+  cursor: pointer;
+}
+
+.tile.movable:hover {
+  @apply transform scale-105;
+}
+
+@keyframes win-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.win-animation {
+  animation: win-animation 0.6s ease-in-out;
 }
