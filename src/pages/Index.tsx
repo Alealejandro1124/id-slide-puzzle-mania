@@ -58,7 +58,7 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-4">
+    <div className="min-h-screen flex flex-col items-center justify-start p-4 light-blue-green-gradient">
       {/* Game Title */}
       <header className="w-full max-w-md text-center mb-6">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
@@ -71,6 +71,9 @@ const Index: React.FC = () => {
             <div>
               <span className="font-bold">Moves:</span> {moves}
             </div>
+            <div className="text-center font-bold">
+              {studentId}
+            </div>
             <div>
               <span className="font-bold">Time:</span> {formatTime(time)}
             </div>
@@ -82,7 +85,7 @@ const Index: React.FC = () => {
       <main className="flex flex-col items-center justify-center flex-grow w-full max-w-md">
         {!gameStarted ? (
           /* Title Screen */
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-center space-y-8 p-6 rounded-lg bg-opacity-70 light-blue-green-gradient shadow-md">
             <p className="text-lg text-center text-gray-700 mb-4">
               Challenge yourself to arrange the shuffled tiles into your Student ID sequence!
             </p>
@@ -107,7 +110,7 @@ const Index: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-8 text-sm text-gray-500">
+      <footer className="mt-8 text-sm text-gray-600 bg-opacity-70 px-4 py-2 rounded">
         <p>Use arrow keys or tap/click to slide tiles.</p>
       </footer>
       
