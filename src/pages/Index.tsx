@@ -31,6 +31,19 @@ const Index: React.FC = () => {
     };
   }, [timerActive]);
 
+  // Space bar to end game and return to home
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && gameStarted && !gameWon) {
+        e.preventDefault(); // Prevent scrolling on space press
+        resetGame();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [gameStarted, gameWon]);
+
   // Initialize game with student ID
   const handleStartGame = (id: string) => {
     setStudentId(id);
@@ -55,6 +68,14 @@ const Index: React.FC = () => {
     setTime(0);
     setGameWon(false);
     setTimerActive(true);
+  };
+
+  // Reset game to home screen
+  const resetGame = () => {
+    setGameStarted(false);
+    setTimerActive(false);
+    setTime(0);
+    setMoves(0);
   };
 
   return (
@@ -111,7 +132,7 @@ const Index: React.FC = () => {
 
       {/* Footer */}
       <footer className="mt-8 text-sm text-gray-600 bg-opacity-70 px-4 py-2 rounded">
-        <p>Use arrow keys or tap/click to slide tiles.</p>
+        <p>Use arrow keys or tap/click to slide tiles. Press space bar to return to home.</p>
       </footer>
       
       {/* Dialogs */}
